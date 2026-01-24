@@ -43,6 +43,7 @@ export default function ProductDetail() {
   }
 
   const allImages = [product.mainImage || product.image, ...(product.carouselImages || [])].filter(Boolean);
+  console.log('[ProductDetail] Product:', product.name, 'Images:', allImages.length, 'MainImage:', !!product.mainImage, 'CarouselImages:', product.carouselImages?.length || 0);
   const sizes = ["S", "M", "L", "XL"];
 
   const suggestedProducts = products
@@ -147,10 +148,10 @@ export default function ProductDetail() {
                   transition={{ delay: 0.4 }}
                   className="flex items-center gap-2 text-amber-500"
                 >
-                  {[...Array(5)].map((_, i) => (
+                  {/* {[...Array(5)].map((_, i) => (
                     <Star key={i} size={14} fill="currentColor" className="drop-shadow-sm" />
-                  ))}
-                  <span className="text-xs font-bold text-gray-400">(4.8 / 124)</span>
+                  ))} */}
+                  {/* <span className="text-xs font-bold text-gray-400">(4.8 / 124)</span> */}
                 </motion.div>
 
                 <h1 className="text-3xl font-bold text-gray-900 tracking-tight leading-tight">
@@ -172,7 +173,7 @@ export default function ProductDetail() {
               </div>
 
               {/* Size Selector */}
-              <div className="space-y-3">
+              {/* <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-bold uppercase text-gray-500">Select Size</span>
                   <button className="text-[10px] font-bold text-amber-600 underline underline-offset-4">
@@ -198,7 +199,7 @@ export default function ProductDetail() {
                     </motion.button>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Tabs with Animated Underline */}
               <div className="border-t border-gray-100 pt-6">
@@ -232,8 +233,8 @@ export default function ProductDetail() {
                     className="text-sm text-gray-600 leading-relaxed"
                   >
                     {activeTab === 'details'
-                      ? (product.description || "Premium handcrafted item with reinforced stitching and ethically sourced materials.")
-                      : "Free express shipping over ₹999. Estimated delivery: 3–5 business days. Trackable."}
+                      ? (product.detailedDescription || product.description || "Premium handcrafted item with reinforced stitching and ethically sourced materials.")
+                      : "Free express shipping over ₹999. Estimated delivery: 3–5 business days."}
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -258,15 +259,20 @@ export default function ProductDetail() {
               </motion.div>
 
               {/* Desktop CTA */}
-              <motion.a
-                href={`https://wa.me/9746683778?text=Hi, I want to order ${product.name} in size ${selectedSize}`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="hidden lg:flex items-center justify-center gap-3 w-full bg-[#128c7e] text-white py-4 rounded-2xl font-bold shadow-xl hover:shadow-2xl transition-all"
-              >
-                <WhatsAppIcon />
-                CHAT TO ORDER NOW
-              </motion.a>
+          <motion.a
+  href={`https://wa.me/9746683778?text=Hi, I want to order ${product.name} in size ${selectedSize}`}
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.98 }}
+  className="hidden lg:flex items-center justify-center gap-3 w-full 
+             bg-yellow-400 text-black 
+             py-4 rounded-2xl font-bold 
+             shadow-lg hover:bg-yellow-500 hover:shadow-xl 
+             transition-all"
+>
+  <WhatsAppIcon />
+  CHAT TO ORDER NOW
+</motion.a>
+
             </motion.div>
           </div>
         </div>

@@ -19,6 +19,7 @@ import ProductDetail from "../pages/ProductDetail";
 
 // New: Login Page
 import LoginPage from "../pages/LoginPage"; // Make sure this file exists!
+import Debug from "../pages/Debug"; // Debug page for testing context
 
 // Context
 import { useProducts } from "../Context/ProductContext";
@@ -84,6 +85,9 @@ export default function AppRoutes() {
               </ProtectedAdminRoute>
             }
           />
+
+          {/* Debug Page */}
+          <Route path="/debug" element={<Debug />} />
 
           {/* Optional: Catch-all for unknown routes */}
           <Route path="*" element={<Navigate to="/" replace />} />
